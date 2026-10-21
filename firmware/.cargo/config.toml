@@ -1,0 +1,15 @@
+[target.'cfg(target_arch = "riscv32")']
+rustflags = [
+  "-C", "link-arg=-Tdirect_boot.x",
+  "-C", "force-frame-pointers",
+]
+
+[target.'cfg(target_arch = "xtensa")']
+rustflags = [
+  # GNU LD
+  "-C", "link-arg=-Wl,-Tdirect_boot.x",
+  "-C", "link-arg=-nostartfiles",
+]
+
+[env]
+ESP_LOG = "info"
